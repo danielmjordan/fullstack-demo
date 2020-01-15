@@ -18,16 +18,12 @@ class App extends React.Component {
     };
 
     this.filterHandler = this.filterHandler.bind(this);
-    this.showModal = this.showModal.bind(this);
-    this.hideModal = this.hideModal.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
-  showModal() {
-    this.setState({ show: true });
-  }
-
-  hideModal() {
-    this.setState({ show: false});
+  toggleModal() {
+    this.setState({ show: !this.state.show });
+    console.log(this.state.show)
   }
 
   componentDidMount() {
@@ -51,6 +47,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <h2>BugReporter</h2>
+        <button onClick={this.toggleModal}>ToggleModal</button>
         <table>
           <Nav
             filterHandler={this.filterHandler}
@@ -68,7 +66,7 @@ class App extends React.Component {
           ))}
         </table>
         <table>
-          <Modal />
+          <Modal show={this.state.show}/>
         </table>
       </div>
     );

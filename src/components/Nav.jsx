@@ -15,6 +15,7 @@ const Nav = (props) => (
           <option value="Low-Priority">Low-Priority</option>
           <option value="Important">Important</option>
           <option value="Critical">Critical</option>
+          <option value="Midnight">Midnight</option>
         </select>
       </th>
     </tr>
