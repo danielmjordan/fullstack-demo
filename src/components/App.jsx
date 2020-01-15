@@ -18,8 +18,16 @@ class App extends React.Component {
     };
 
     this.filterHandler = this.filterHandler.bind(this);
-    // this.showModal = this.showModal.bind(this);
-    // this.hideModal = this.hideModal.bind(this);
+    this.showModal = this.showModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
+  }
+
+  showModal() {
+    this.setState({ show: true });
+  }
+
+  hideModal() {
+    this.setState({ show: false});
   }
 
   componentDidMount() {
@@ -28,14 +36,6 @@ class App extends React.Component {
       .then((data) => data.json())
       .then((results) => this.setState( { bugs: results, originalBugs: results }))
   }
-
-  // showModal() {
-  //   this.setState({ show: true });
-  // }
-
-  // hideModal() {
-  //   this.setState({ show: false});
-  // }
 
   filterHandler(filter) {
     this.setState({ filter }, () => {
@@ -50,22 +50,27 @@ class App extends React.Component {
 
   render() {
     return (
-      <table>
-        <Nav
-          filterHandler={this.filterHandler}
-        />
-        {this.state.bugs.map((bug) => (
-          <BugTile
-            bugName={bug.bugName}
-            bugDescription={bug.bugDescription}
-            reportedBy={bug.reportedBy}
-            createdDate={bug.createdDate}
-            assignedTo={bug.assignedTo}
-            threatLevel={bug.threatLevel}
-            key={bug.bugName}
+      <div>
+        <table>
+          <Nav
+            filterHandler={this.filterHandler}
           />
-        ))}
-      </table>
+          {this.state.bugs.map((bug) => (
+            <BugTile
+              bugName={bug.bugName}
+              bugDescription={bug.bugDescription}
+              reportedBy={bug.reportedBy}
+              createdDate={bug.createdDate}
+              assignedTo={bug.assignedTo}
+              threatLevel={bug.threatLevel}
+              key={bug.bugName}
+            />
+          ))}
+        </table>
+        <table>
+          <Modal />
+        </table>
+      </div>
     );
   }
 }
