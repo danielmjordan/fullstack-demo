@@ -18,7 +18,7 @@ const BugSchema = new mongoose.Schema({
 
 const Report = mongoose.model('Report', BugSchema);
 
-module.exports.Report = Report;
+module.exports = { Report };
 
 
 
