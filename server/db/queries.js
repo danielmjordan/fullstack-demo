@@ -11,7 +11,7 @@ const BugSchema = new mongoose.Schema({
   bugName: Number,
   bugDescription: String,
   reportedBy: String,
-  createdDate: { type: Date, default: Date.now() },
+  createdDate: Date,
   assignedTo: String,
   threatLevel: String,
 });
