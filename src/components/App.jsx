@@ -2,8 +2,9 @@ import React from 'react';
 import Nav from './Nav.jsx';
 import BugTile from './BugTile.jsx';
 import exampleData from '../example-data/exampleData';
-
 import '../styles/App.scss';
+
+const requestUrl = 'http://localhost:3000/'
 
 class App extends React.Component {
   constructor() {
@@ -13,6 +14,12 @@ class App extends React.Component {
       bugs: exampleData,
     };
     this.filterHandler = this.filterHandler.bind(this);
+  }
+
+  componentDidMount() {
+    fetch(requestUrl)
+      .then((data) => data.json())
+      .then((results) => this.setState( { bugs: results }))
   }
 
   filterHandler(filter) {
