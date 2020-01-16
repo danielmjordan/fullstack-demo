@@ -23,11 +23,9 @@ class App extends React.Component {
 
   toggleModal() {
     this.setState({ show: !this.state.show });
-    console.log(this.state.show)
   }
 
   componentDidMount() {
-    // showModal();
     fetch(requestUrl)
       .then((data) => data.json())
       .then((results) => this.setState( { bugs: results, originalBugs: results }))
@@ -48,7 +46,7 @@ class App extends React.Component {
     return (
       <div>
         <h2>BugReporter</h2>
-        <button onClick={this.toggleModal}>ToggleModal</button>
+        <button onClick={this.toggleModal}>Add Bug Report</button>
         <table>
           <Nav
             filterHandler={this.filterHandler}

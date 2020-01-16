@@ -5,7 +5,8 @@ const bodyParser = require('body-parser');
 const { Report } = require('./db/queries');
 const PORT = 3000;
 
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 //GET route to send all bug reports to user from database
@@ -17,7 +18,9 @@ app.get('/', (req, res) => {
 
 //POST method to add new bug report to database
 app.post('/', (req, res) => {
+  console.log(req.body)
   const report = new Report(req.body);
+  console.log(report);
   report.save()
     .then((doc) => res.status(201).send(doc))
     .catch(err => res.status(418).send(err));
